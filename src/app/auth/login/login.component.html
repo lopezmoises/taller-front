@@ -1,0 +1,47 @@
+<div class='container mt-10p'>
+    <div class='row justify-content-center'>
+        <div class='col-12 col-md-4'>
+            <div class='card o-hidden border-0 shadow-lg my-5 rounded-0'>
+                <div class='card-body p-0'>
+                    <div class='p-5'>
+                        <div class='btn-icon mb-4 mx-auto'>
+                            <img alt='profile'
+                                 class='img-fluid'
+                                 src='assets/img/illustrations/profiles/profile-2.png'
+                            />
+                        </div>
+                        <h4 class='text-center mb-4'>Login</h4>
+                        <form (ngSubmit)='login()' [formGroup]='form' class='user' novalidate>
+                            <div class='form-floating mb-4'>
+                                <input aria-describedby='emailHelp'
+                                       class='form-control rounded-0'
+                                       formControlName='username'
+                                       id='email-input'
+                                       placeholder='name@example.com'
+                                       type='text'
+                                >
+                                <label for='email-input'>Usuário</label>
+                            </div>
+                            <div class='form-floating mb-4'>
+                                <input class='form-control rounded-0'
+                                       formControlName='password'
+                                       id='password-input'
+                                       placeholder='Password'
+                                       type='password'
+                                >
+                                <label for='password-input'>Contraseña</label>
+                            </div>
+                            <div class='d-grid gap-2'>
+                                <button class='btn btn-primary rounded-0 text-white fw-bold'
+                                        type='submit'
+                                >
+                                    ENTRAR
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

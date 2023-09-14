@@ -1,0 +1,15 @@
+{
+    "singleQuote": true,
+    "overrides": [
+        {
+            "files": ["*.css", "*.scss", "*.html"],
+            "options": {
+                "singleQuote": false
+            }
+        }
+    ],
+    "semi": false,
+    "bracketSpacing": true,
+    "tabWidth": 4,
+    "arrowParens": "avoid"
+}

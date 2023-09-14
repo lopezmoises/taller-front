@@ -1,0 +1,114 @@
+<nav class='topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-dark'
+     id='sidenavAccordion'
+>
+    <!-- Sidenav Toggle Button-->
+    <button (click)='toggleSidebar()'
+            class='btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-lg-2 me-lg-0'
+            id='sidebarToggle'
+    >
+        <i class='fa-sharp fa-solid fa-bars'></i>
+    </button>
+    <!-- Navbar Brand-->
+    <!-- * * Tip * * You can use text or an image for your navbar brand.-->
+    <!-- * * * * * * When using an image, we recommend the SVG format.-->
+    <!-- * * * * * * Dimensions: Maximum height: 32px, maximum width: 240px-->
+    <a class='navbar-brand pe-3 ps-4 ps-lg-2' href='index.html'>Taller Admin</a>
+    <!-- Navbar Items-->
+    <ul class='navbar-nav align-items-center ms-auto'>
+        <!-- User Dropdown-->
+        <li class='nav-item dropdown no-caret dropdown-user me-3 me-lg-4'>
+            <a aria-expanded='false'
+               aria-haspopup='true'
+               class='btn btn-icon btn-transparent-dark dropdown-toggle'
+               data-bs-toggle='dropdown'
+               href='javascript:void(0);'
+               id='navbarDropdownUserImage'
+               role='button'
+            >
+                <img alt='profile' class='img-fluid' src='assets/img/illustrations/profiles/profile-2.png' />
+            </a>
+            <div aria-labelledby='navbarDropdownUserImage'
+                 class='dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up bg-dark'
+            >
+                <h6 class='dropdown-header d-flex align-items-center'>
+                    <img alt='profile'
+                         class='dropdown-user-img'
+                         src='assets/img/illustrations/profiles/profile-2.png'
+                    />
+                    <div class='dropdown-user-details'>
+                        <div class='dropdown-user-details-name'>Valerie Luna</div>
+                        <div class='dropdown-user-details-email'>vluna@aol.com</div>
+                    </div>
+                </h6>
+                <div class='dropdown-divider'></div>
+                <a class='dropdown-item' href='#!'>
+                    <i class='fa-sharp fa-regular fa-gear text-secondary-emphasis'></i>
+                    Account
+                </a>
+                <a (click)='exit()' class='dropdown-item' href='javascript:void(0);'>
+                    <i class='fa-sharp fa-regular fa-right-from-bracket text-secondary-emphasis'></i>
+                    Logout
+                </a>
+            </div>
+        </li>
+    </ul>
+</nav>
+<div id='layoutSidenav'>
+    <div id='layoutSidenav_nav'>
+        <nav class='sidenav shadow-right sidenav-dark'>
+            <div class='sidenav-menu'>
+                <div class='nav accordion' id='accordionSidenav'>
+                    <!-- Sidenav Menu Heading (Core)-->
+                    <div class='sidenav-menu-heading'>Core</div>
+                    <!-- Sidenav Accordion (Dashboard)-->
+                    <a [class.collapsed]="!isActive('customer')"
+                       aria-controls='collapseDashboards'
+                       aria-expanded='false'
+                       class='nav-link'
+                       data-bs-target='#collapseDashboards'
+                       data-bs-toggle='collapse'
+                       href='javascript:void(0);'
+                    >
+                        <div class='nav-link-icon'><i class='fa-sharp fa-regular fa-users'></i></div>
+                        Clientes
+                        <div class='sidenav-collapse-arrow'><i class='fas fa-angle-down'></i></div>
+                    </a>
+                    <div [class.show]="isActive('customer')"
+                         class='collapse'
+                         data-bs-parent='#accordionSidenav'
+                         id='collapseDashboards'
+                    >
+                        <nav class='sidenav-menu-nested nav accordion' id='accordionSidenavPages'>
+                            <a class='nav-link' routerLink='/customer/create' routerLinkActive='active'>Crear</a>
+                            <a class='nav-link' routerLink='/customer/list' routerLinkActive='active'>Lista</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <!-- Sidenav Footer-->
+            <div class='sidenav-footer'>
+                <div class='sidenav-footer-content'>
+                    <div class='sidenav-footer-subtitle'>Logged in as:</div>
+                    <div class='sidenav-footer-title'>Valerie Luna</div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div id='layoutSidenav_content'>
+        <main class='my-5'>
+            <router-outlet></router-outlet>
+        </main>
+        <footer class='footer-admin mt-auto footer-light'>
+            <div class='container-xl px-4'>
+                <div class='row'>
+                    <div class='col-md-6 small'>Copyright &copy; Your Website 2021</div>
+                    <div class='col-md-6 text-md-end small'>
+                        <a href='#!'>Privacy Policy</a>
+                        &middot;
+                        <a href='#!'>Terms &amp; Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>

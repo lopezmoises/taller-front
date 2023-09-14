@@ -1,0 +1,32 @@
+$brand-google: #ea4335;
+$brand-facebook: #3b5998;
+$white: #fff !default;
+
+form.user {
+    .form-control-user {
+        font-size: 0.8rem;
+        border-radius: 10rem;
+        padding: 1rem 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .btn-user {
+        font-size: 0.8rem;
+        border-radius: 10rem;
+        padding: 0.75rem 1rem;
+    }
+}
+
+.mt-10p {
+    margin-top: 10%;
+}
+
+.btn-icon {
+    padding: 0;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 100%;
+    flex-shrink: 0;
+    height: calc((1.875rem * 1) + (1.875rem * 2) + (2px)) !important;
+    width: calc((1.875rem * 1) + (1.875rem * 2) + (2px)) !important;
+}
