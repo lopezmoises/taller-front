@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <div class="card rounded-0 mx-5">
+                <div class="card-header fw-bold">Mensaje N° {{ contact.id }}</div>
+                <div class="card-body">
+                    <form>
+                        <div class="form-floating mb-3">
+                            <input [value]="contact.name" class="form-control rounded-0" id="contact-name" readonly type="text" />
+                            <label for="contact-name">Nombre</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input [value]="contact.phone" class="form-control rounded-0" id="contact-tel" readonly type="text" />
+                            <label for="contact-tel">Teléfono</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input [value]="contact.email" class="form-control rounded-0" id="contact-email" readonly type="email" />
+                            <label for="contact-email">Email</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input [value]="contact.address" class="form-control rounded-0" id="contact-document" readonly type="text" />
+                            <label for="contact-document">Dirección</label>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <textarea class="form-control rounded-0" rows="6">{{ contact.text }}</textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

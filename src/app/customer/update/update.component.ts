@@ -25,7 +25,7 @@ export class UpdateComponent implements OnInit {
                 name: [{ value: null, disabled: true }],
                 document: [{ value: null, disabled: true }],
                 phone: ['', [Validators.required]],
-                email: ['', [Validators.email]],
+                email: ['', [Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
                 address: ['', [Validators.required]],
             },
             {
@@ -35,7 +35,6 @@ export class UpdateComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.toastService.show('TEST')
         this.customerId = this.route.snapshot.paramMap.get('id') ?? ''
         this.customerService.getById(this.customerId).subscribe({
             next: res => {
@@ -58,32 +57,23 @@ export class UpdateComponent implements OnInit {
         if (this.form.invalid) {
             this.form.markAllAsTouched()
         } else {
-            this.customerService
-                .update(this.customerId, this.customerBody())
-                .subscribe({
-                    next: res => {
-                        this.form.reset()
-                        /*this.toastService.show(
-                            `El cliente ${res.businessName} fue actualizado.`,
-                            'Exito',
-                            'success',
-                        )*/
-                        this.ngOnInit()
-                    },
-                    error: err => {
-                        console.error(err)
-                        /*this.toastService.show(
-                            getErrors(err.msg),
-                            'Error',
-                            'danger',
-                        )*/
-                    },
-                })
+            this.customerService.update(this.customerBody()).subscribe({
+                next: res => {
+                    this.form.reset()
+                    this.toastService.show(`El cliente ${res.name} fue actualizado.`, 'Exito', 'success')
+                    this.ngOnInit()
+                },
+                error: err => {
+                    console.error(err)
+                    this.toastService.show(err.msg, 'Error', 'danger')
+                },
+            })
         }
     }
 
     private customerBody(): Customer {
         return {
+            id: Number(this.customerId),
             name: this.form.controls['name'].value,
             document: this.form.controls['document'].value,
             phone: this.form.controls['phone'].value,

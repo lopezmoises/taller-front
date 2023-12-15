@@ -1,7 +1,6 @@
 import { Component, OnInit, Renderer2 } from '@angular/core'
 import { Router } from '@angular/router'
 import { StorageService } from '../auth/storage.service'
-import { AuthService } from '../auth/auth.service'
 import { User } from '../user/user.model'
 
 @Component({
@@ -11,6 +10,9 @@ import { User } from '../user/user.model'
 })
 export class WrapperComponent implements OnInit {
     public user: User = {}
+    public toggleCustomer = false
+    public toggleReparation = false
+    public toggleLogin = false
 
     constructor(
         private renderer: Renderer2,

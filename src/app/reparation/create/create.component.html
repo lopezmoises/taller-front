@@ -1,0 +1,281 @@
+<div class="card rounded-0 mx-5">
+    <div class="card-header fw-bold">Nueva Reparación</div>
+    <div class="card-body">
+        <div class="mt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <ul class="nav nav-pills justify-content-center mb-3 text-center custom" id="pills-tab" role="tablist">
+                            <div class="step-line col-12"></div>
+                            <li class="nav-item" role="presentation">
+                                <a [class.active]="customerStep" class="nav-link custom" role="tab">
+                                    <span class="icon"><i class="fa-duotone fa-user fa-xl"></i></span>
+                                    <span class="text">Cliente</span>
+                                </a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a [class.active]="deviceStep" class="nav-link custom" role="tab">
+                                    <span class="icon"><i class="fa-duotone fa-mobile fa-xl"></i></span>
+                                    <span class="text">Equipo</span>
+                                </a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a [class.active]="reparationStep" class="nav-link custom" role="tab">
+                                    <span class="icon"><i class="fa-duotone fa-wrench-simple fa-xl"></i></span>
+                                    <span class="text">Reparación</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content" id="pills-tabContent">
+            <div
+                [class.active]="customerStep"
+                [class.show]="customerStep"
+                aria-labelledby="pills-home-tab"
+                class="tab-pane fade"
+                role="tabpanel"
+                tabindex="0"
+            >
+                <form [formGroup]="formCustomer">
+                    <div [class.is-invalid]="!inputIsValid('document', formCustomer)" class="form-floating mb-3">
+                        <input
+                            [class.is-invalid]="!inputIsValid('document', formCustomer)"
+                            class="form-control rounded-0"
+                            formControlName="document"
+                            id="customer-document"
+                            type="text"
+                            (change)='findCustomer()'
+                        />
+                        <label *ngIf="inputIsValid('document', formCustomer); else invalidCustomerDocument" for="customer-document">Documento</label>
+                        <ng-template #invalidCustomerDocument>
+                            <label class="text-danger" for="customer-document">Documento inválido</label>
+                        </ng-template>
+                    </div>
+                    <div [class.is-invalid]="!inputIsValid('name', formCustomer)" class="form-floating mb-3">
+                        <input
+                            [class.is-invalid]="!inputIsValid('name', formCustomer)"
+                            class="form-control rounded-0"
+                            formControlName="name"
+                            id="customer-name"
+                            type="text"
+                        />
+                        <label *ngIf="inputIsValid('name', formCustomer); else invalidCustomerName" for="customer-name">Nombre</label>
+                        <ng-template #invalidCustomerName>
+                            <label class="text-danger" for="customer-name">Nombre requerido</label>
+                        </ng-template>
+                    </div>
+                    <div [class.is-invalid]="!inputIsValid('phone', formCustomer)" class="form-floating mb-3">
+                        <input
+                            [class.is-invalid]="!inputIsValid('phone', formCustomer)"
+                            class="form-control rounded-0"
+                            formControlName="phone"
+                            id="customer-phone"
+                            type="text"
+                        />
+                        <label *ngIf="inputIsValid('phone', formCustomer); else invalidCustomerPhone" for="customer-phone">Teléfono</label>
+                        <ng-template #invalidCustomerPhone>
+                            <label class="text-danger" for="customer-phone">Teléfono inválido</label>
+                        </ng-template>
+                    </div>
+                    <div [class.is-invalid]="!inputIsValid('email', formCustomer)" class="form-floating mb-3">
+                        <input
+                            [class.is-invalid]="!inputIsValid('email', formCustomer)"
+                            class="form-control rounded-0"
+                            formControlName="email"
+                            id="customer-email"
+                            type="email"
+                        />
+                        <label *ngIf="inputIsValid('email', formCustomer); else invalidCustomerEmail" for="customer-email">Email</label>
+                        <ng-template #invalidCustomerEmail>
+                            <label class="text-danger" for="customer-email">Email inválido</label>
+                        </ng-template>
+                    </div>
+                    <div [class.is-invalid]="!inputIsValid('address', formCustomer)" class="form-floating mb-3">
+                        <input
+                            [class.is-invalid]="!inputIsValid('address', formCustomer)"
+                            class="form-control rounded-0"
+                            formControlName="address"
+                            id="customer-address"
+                            type="text"
+                        />
+                        <label *ngIf="inputIsValid('address', formCustomer); else invalidCustomerAddress" for="customer-address">Dirección</label>
+                        <ng-template #invalidCustomerAddress>
+                            <label class="text-danger" for="customer-address">Dirección requerida</label>
+                        </ng-template>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button (click)="onNext('DEVICE')" class="btn btn-primary rounded-0 fw-bold" type="button">
+                            Próximo<i class="fa-solid fa-right-long ms-2"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div
+                [class.active]="deviceStep"
+                [class.show]="deviceStep"
+                aria-labelledby="pills-profile-tab"
+                class="tab-pane fade"
+                id="pills-profile"
+                role="tabpanel"
+                tabindex="0"
+            >
+                <form [formGroup]="formDevice">
+                    <div [class.is-invalid]="!inputIsValid('serialNumber', formDevice)" class="form-floating mb-3">
+                        <input
+                            [class.is-invalid]="!inputIsValid('serialNumber', formDevice)"
+                            class="form-control rounded-0"
+                            formControlName="serialNumber"
+                            id="device-serial-number"
+                            type="text"
+                        />
+                        <label *ngIf="inputIsValid('serialNumber', formDevice); else invalidDeviceSerialNumber" for="device-serial-number"
+                            >Número de serie</label
+                        >
+                        <ng-template #invalidDeviceSerialNumber>
+                            <label class="text-danger" for="device-serial-number"> Numero de serie requerido</label>
+                        </ng-template>
+                    </div>
+                    <div [class.is-invalid]="!inputIsValid('brand', formDevice)" class="form-floating mb-3">
+                        <input
+                            [class.is-invalid]="!inputIsValid('brand', formDevice)"
+                            class="form-control rounded-0"
+                            formControlName="brand"
+                            id="device-brand"
+                            type="text"
+                        />
+                        <label *ngIf="inputIsValid('brand', formDevice); else invalidDeviceBrand" for="device-brand">Marca</label>
+                        <ng-template #invalidDeviceBrand>
+                            <label class="text-danger" for="device-brand">Marca requerida</label>
+                        </ng-template>
+                    </div>
+                    <div [class.is-invalid]="!inputIsValid('model', formDevice)" class="form-floating mb-3">
+                        <input
+                            [class.is-invalid]="!inputIsValid('model', formDevice)"
+                            class="form-control rounded-0"
+                            formControlName="model"
+                            id="device-model"
+                            type="text"
+                        />
+                        <label *ngIf="inputIsValid('model', formDevice); else invalidDeviceModel" for="device-model">Modelo</label>
+                        <ng-template #invalidDeviceModel>
+                            <label class="text-danger" for="device-model">Modelo requerido</label>
+                        </ng-template>
+                    </div>
+                    <div [class.is-invalid]="!inputIsValid('type', formDevice)" class="form-floating mb-3">
+                        <input
+                            [class.is-invalid]="!inputIsValid('type', formDevice)"
+                            class="form-control rounded-0"
+                            formControlName="type"
+                            id="device-type"
+                            type="text"
+                        />
+                        <label *ngIf="inputIsValid('type', formDevice); else invalidDeviceType" for="device-type">Tipo</label>
+                        <ng-template #invalidDeviceType>
+                            <label class="text-danger" for="device-type">Tipo requerido</label>
+                        </ng-template>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button (click)="onNext('REPARATION')" class="btn btn-primary rounded-0 fw-bold" type="button">
+                            Próximo<i class="fa-solid fa-right-long ms-2"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div
+                [class.active]="reparationStep"
+                [class.show]="reparationStep"
+                aria-labelledby="pills-contact-tab"
+                class="tab-pane fade"
+                id="pills-contact"
+                role="tabpanel"
+                tabindex="0"
+            >
+                <form [formGroup]="formReparation">
+                    <div [class.is-invalid]="!inputIsValid('problem', formReparation)" class="form-floating mb-3">
+                        <textarea
+                            [class.is-invalid]="!inputIsValid('problem', formReparation)"
+                            class="form-control rounded-0"
+                            formControlName="problem"
+                            id="reparation-problem"
+                            style="height: 100px"
+                            type="text"
+                        ></textarea>
+                        <label *ngIf="inputIsValid('problem', formReparation); else invalidReparationProblem" for="reparation-problem">
+                            Problema
+                        </label>
+                        <ng-template #invalidReparationProblem>
+                            <label class="text-danger" for="reparation-problem">Problema</label>
+                        </ng-template>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select (change)='onChangeStatus()' aria-label="Floating label select example" class="form-select rounded-0" formControlName="status" id="floatingSelect">
+                            <option selected value="RECIBIDO">RECIBIDO</option>
+                            <option value="PRESUPUESTADO">PRESUPUESTADO</option>
+                        </select>
+                        <label for="floatingSelect">Estado:</label>
+                    </div>
+                    <div *ngIf="budgeted" class="row">
+                        <div [class.is-invalid]="!inputIsValid('clientReport', formReparation)" class="form-floating mb-3 col">
+                            <textarea
+                                [class.is-invalid]="!inputIsValid('clientReport', formReparation)"
+                                class="form-control rounded-0"
+                                formControlName="clientReport"
+                                id="reparation-client-report"
+                                style="height: 150px"
+                                type="text"
+                            ></textarea>
+                            <label
+                                *ngIf="inputIsValid('clientReport', formReparation); else invalidReparationClientReport"
+                                for="reparation-client-report"
+                            >
+                                Informe cliente
+                            </label>
+                            <ng-template #invalidReparationClientReport>
+                                <label class="text-danger" for="reparation-client-report">Informe cliente</label>
+                            </ng-template>
+                        </div>
+                        <div [class.is-invalid]="!inputIsValid('techReport', formReparation)" class="form-floating mb-3 col">
+                            <textarea
+                                [class.is-invalid]="!inputIsValid('techReport', formReparation)"
+                                class="form-control rounded-0"
+                                formControlName="techReport"
+                                id="reparation-tech-report"
+                                style="height: 150px"
+                                type="text"
+                            ></textarea>
+                            <label *ngIf="inputIsValid('techReport', formReparation); else invalidReparationTechReport" for="reparation-tech-report">
+                                Informe Técnico
+                            </label>
+                            <ng-template #invalidReparationTechReport>
+                                <label class="text-danger" for="reparation-tech-report">Informe Técnico</label>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div *ngIf="budgeted" [class.is-invalid]="!inputIsValid('budget', formReparation)" class="form-floating mb-3">
+                        <input
+                            [class.is-invalid]="!inputIsValid('budget', formReparation)"
+                            class="form-control rounded-0"
+                            formControlName="budget"
+                            id="reparation-budget"
+                            type="number"
+                        />
+                        <label *ngIf="inputIsValid('budget', formReparation); else invalidReparationBudget" for="reparation-budget"
+                            >Presupuesto</label
+                        >
+                        <ng-template #invalidReparationBudget>
+                            <label class="text-danger" for="reparation-budget">Presupuesto inválido</label>
+                        </ng-template>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button (click)="onSave()" class="btn btn-primary rounded-0 fw-bold" type="button">
+                            <i class="fa-duotone fa-floppy-disk me-2"></i>Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

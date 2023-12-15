@@ -1,0 +1,160 @@
+<div class="card rounded-0 mx-5">
+    <div class="card-header fw-bold">Reparación N°: {{ reparation.id }}</div>
+    <div class="card-body">
+        <form [formGroup]="form">
+            <div class="row">
+                <div class="col-4 border-end">
+                    <div class="form-floating mb-3">
+                        <input [value]="reparation.customer?.name" class="form-control rounded-0" id="customer-name" readonly type="text" />
+                        <label for="customer-name">Nombre</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input [value]="reparation.customer?.document" class="form-control rounded-0" id="customer-document" readonly type="text" />
+                        <label for="customer-document">Documento</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="form-floating mb-3">
+                                <input [value]="reparation.customer?.phone" class="form-control rounded-0" id="customer-phone" readonly type="text" />
+                                <label for="customer-phone">Teléfono</label>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="form-floating mb-3">
+                                <input [value]="reparation.customer?.email" class="form-control rounded-0" id="customer-email" readonly type="text" />
+                                <label for="customer-email">Email</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input [value]="reparation.customer?.address" class="form-control rounded-0" id="customer-address" readonly type="text" />
+                        <label for="customer-address">Dirección</label>
+                    </div>
+                    <hr />
+                    <div class="form-floating mb-3">
+                        <input
+                            [value]="reparation.device?.brand + ' - ' + reparation.device?.model"
+                            class="form-control rounded-0"
+                            id="customer-model"
+                            readonly
+                            type="text"
+                        />
+                        <label for="customer-model">Modelo</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input
+                            [value]="reparation.device?.serialNumber"
+                            class="form-control rounded-0"
+                            id="customer-serialNumber"
+                            readonly
+                            type="text"
+                        />
+                        <label for="customer-serialNumber">Número de serie</label>
+                    </div>
+                    <hr />
+                    <div class="form-floating mb-3">
+                        <input [value]="reparation.uuid" class="form-control rounded-0" id="reparation-uuid" readonly type="text" />
+                        <label for="reparation-uuid">Identificador de reparación</label>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="form-floating mb-3">
+                        <textarea
+                            [disabled]="reparation.delivered"
+                            [readonly]="!reparation.delivered"
+                            [value]="reparation.problem"
+                            class="form-control rounded-0"
+                            id="reparation-problem"
+                            style="height: 105px"
+                        ></textarea>
+                        <label for="reparation-problem"> Problema </label>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-floating mb-3">
+                                <textarea
+                                    (focusin)="clearReport('clientReport')"
+                                    (focusout)="reloadReport(ReportType.CLIENT)"
+                                    class="form-control rounded-0"
+                                    formControlName="clientReport"
+                                    id="reparation-client-report"
+                                    style="height: 250px"
+                                    type="text"
+                                ></textarea>
+                                <label for="reparation-client-report"> Informe cliente </label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-floating mb-3 col">
+                                <textarea
+                                    (focusin)="clearReport('techReport')"
+                                    (focusout)="reloadReport(ReportType.TECH)"
+                                    class="form-control rounded-0"
+                                    formControlName="techReport"
+                                    id="reparation-tech-report"
+                                    style="height: 250px"
+                                    type="text"
+                                ></textarea>
+                                <label for="reparation-tech-report"> Informe Técnico </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3 col">
+                        <input
+                            [class.is-invalid]="!inputIsValid('budget')"
+                            class="form-control rounded-0"
+                            formControlName="budget"
+                            id="reparation-budget"
+                            type="text"
+                        />
+                        <label *ngIf="inputIsValid('budget'); else invalidReparationBudget" for="reparation-budget">Presupuesto</label>
+                        <ng-template #invalidReparationBudget>
+                            <label class="text-danger" for="reparation-budget">Presupuesto inválido</label>
+                        </ng-template>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="form-floating mb-3">
+                                <select
+                                    *ngIf="!reparation.delivered; else statusReadOnly"
+                                    aria-label="Floating label select example"
+                                    class="form-select rounded-0"
+                                    formControlName="status"
+                                    id="floatingSelect"
+                                >
+                                    <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+                                </select>
+                                <label *ngIf="!reparation.delivered" for="floatingSelect">Estado:</label>
+                                <ng-template #statusReadOnly>
+                                    <input [value]="reparation.status" class="form-control rounded-0" id="statusReadOnly" readonly type="text" />
+                                    <label for="statusReadOnly">Estado:</label>
+                                </ng-template>
+                            </div>
+                        </div>
+                        <div class="col d-grid gap-2 mb-3">
+                            <button
+                                (click)="onDeliver()"
+                                *ngIf="!reparation.delivered"
+                                class="btn btn-outline-success btn-lg rounded-0"
+                                type="button"
+                            >
+                                Entregar
+                                <i class="fa-duotone fa-hand-holding-box ms-2"></i>
+                            </button>
+                            <button *ngIf="reparation.delivered" class="btn btn-success btn-lg rounded-0" type="button">
+                                Entregado
+                                <i class="fa-duotone fa-square-check ms-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-grid gap-2">
+                    <button (click)="onSave()" class="btn btn-primary rounded-0 fw-bold" type="button">
+                        <i class="fa-duotone fa-floppy-disk me-2"></i>Guardar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

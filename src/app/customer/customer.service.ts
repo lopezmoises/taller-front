@@ -18,12 +18,16 @@ export class CustomerService {
         return this.http.get<Customer>(`${URL_API}customer/${id}`)
     }
 
+    public getByDocument(document: string): Observable<Customer> {
+        return this.http.get<Customer>(`${URL_API}customer/document/${document}`)
+    }
+
     public create(customer: Customer): Observable<Customer> {
         return this.http.post<Customer>(`${URL_API}customer`, customer)
     }
 
-    public update(id: string, customer: Customer): Observable<any> {
-        return this.http.put(`${URL_API}customer/${id}`, customer)
+    public update(customer: Customer): Observable<any> {
+        return this.http.put(`${URL_API}customer`, customer)
     }
 
     public delete(id: number): Observable<any> {

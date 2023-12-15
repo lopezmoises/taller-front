@@ -1,46 +1,43 @@
-<div class='container-xl px-4 mt-n10'>
-    <div class='card mb-4'>
-        <div class='card-header fw-bold py-3'>Clientes</div>
-        <div class='card-body my-3'>
-            <table class='table table-dark table-striped table-bordered mb-0'>
+<div class="container-xl px-4 mt-n10">
+    <div class="card mb-4">
+        <div class="card-header fw-bold py-3">Clientes</div>
+        <div class="card-body my-3">
+            <table class="table table-dark table-striped table-bordered mb-0">
                 <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Documento</th>
-                    <th>Teléfono</th>
-                    <th>Email</th>
-                    <th>Dirección</th>
-                    <th></th>
-                </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Documento</th>
+                        <th>Teléfono</th>
+                        <th>Email</th>
+                        <th>Dirección</th>
+                        <th></th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor='let customer of customers'>
-                    <td>{{ customer.id }}</td>
-                    <td>{{ customer.name }}</td>
-                    <td>{{ customer.document }}</td>
-                    <td>{{ customer.phone }}</td>
-                    <td>{{ customer.email }}</td>
-                    <td>{{ customer.address }}</td>
-                    <td>
-                        <a class='text-warning me-4'
-                           ngbTooltip='Editar'
-                           placement='top'
-                           routerLink='/customer/update/{{ customer.id }}'
-                        >
-                            <i class='fad fa-pencil'></i>
-                        </a>
-                        <a (click)='onDelete(customer.id!)'
-                           class='text-danger'
-                           href='javascript:void(0);'
-                           ngbTooltip='Eliminar'
-                           placement='top'
-                           role='button'
-                        >
-                            <i class='fad fa-trash-can'></i>
-                        </a>
-                    </td>
-                </tr>
+                    <tr *ngFor="let customer of customers">
+                        <td>{{ customer.id }}</td>
+                        <td>{{ customer.name }}</td>
+                        <td>{{ customer.document }}</td>
+                        <td>{{ customer.phone }}</td>
+                        <td>{{ customer.email }}</td>
+                        <td>{{ customer.address }}</td>
+                        <td>
+                            <a class="text-warning me-4" ngbTooltip="Editar" placement="top" routerLink="/customer/update/{{ customer.id }}">
+                                <i class="fad fa-pencil"></i>
+                            </a>
+                            <a
+                                (click)="onDelete(customer.id!)"
+                                class="text-danger"
+                                href="javascript:void(0);"
+                                ngbTooltip="Eliminar"
+                                placement="top"
+                                role="button"
+                            >
+                                <i class="fad fa-trash-can"></i>
+                            </a>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

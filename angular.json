@@ -38,7 +38,7 @@
                         ],
                         "scripts": [
                             "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-                            "src/assets/fontawesome/js/all.js",
+                            "src/assets/fontawesome/js/all.js"
                         ]
                     },
                     "configurations": {
@@ -70,6 +70,10 @@
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "move-safe:build",
+                        "proxyConfig": "src/proxy.conf.json"
+                    },
                     "configurations": {
                         "production": {
                             "browserTarget": "taller-front:build:production"

@@ -12,6 +12,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { AuthInterceptorService } from './auth/auth-interceptor.service'
 import { SpinnerComponent } from './shared/spinner/spinner.component'
 import { ToastComponent } from './shared/toast/toast.component'
+import { ReparationModule } from './reparation/reparation.module'
+import { WebModule } from './web/web.module'
 
 @NgModule({
     declarations: [AppComponent],
@@ -23,9 +25,12 @@ import { ToastComponent } from './shared/toast/toast.component'
         CustomerModule,
         AuthModule,
         UserModule,
+        CustomerModule,
+        ReparationModule,
         HttpClientModule,
         SpinnerComponent,
         ToastComponent,
+        WebModule,
     ],
     providers: [
         {

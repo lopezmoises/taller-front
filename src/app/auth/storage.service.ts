@@ -25,9 +25,9 @@ export class StorageService {
         return this.currentSession
     }
 
-    public getCurrentUser(): User | null {
+    public getCurrentUser(): User | undefined {
         const session: Session | null = this.getSession()
-        return session && session.user ? session.user : null
+        return session && session.user ? session.user : undefined
     }
 
     public isAuthenticated(): boolean {
@@ -63,10 +63,7 @@ export class StorageService {
     private verifyToken(): void {
         if (this.currentSession) {
             const date = Math.round(+new Date() / 1000)
-            if (
-                this.isAuthenticated() &&
-                this.currentSession.expiration < date
-            ) {
+            if (this.isAuthenticated() && this.currentSession.expiration < date) {
                 this.logout()
             }
         }

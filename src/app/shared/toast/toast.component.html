@@ -1,13 +1,15 @@
-<div class='toast-container position-fixed bottom-0 end-0 p-3'>
+<div class='toast-container position-fixed top-0 start-50 translate-middle-x"'>
     <div #myToast
+         *ngFor='let toast of toastService.toasts'
          aria-atomic='true'
          aria-live='assertive'
-         class='toast align-items-center'
+         class='toast fade show'
+         data-bs-autohide='true'
          role='alert'
     >
         <div class='d-flex'>
             <div class='toast-body'>
-                {{ msg }}
+                {{ toast.body }}
             </div>
             <button aria-label='Close' class='btn-close me-2 m-auto' data-bs-dismiss='toast' type='button'></button>
         </div>

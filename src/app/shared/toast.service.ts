@@ -8,6 +8,9 @@ export class ToastService {
 
     show(body?: string, header?: string, style?: string, delay?: number) {
         this.toasts.push({ header, body, style, delay })
+        setTimeout(() => {
+            this.clear()
+        }, delay || 5000)
     }
 
     remove(toast: any) {

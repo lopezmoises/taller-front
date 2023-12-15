@@ -22,7 +22,6 @@ export class AuthInterceptorService {
         this.loader.show()
         const token = this.storage.getCompleteToken()
         let request = req
-        console.log(token)
         if (token) {
             request = req.clone({
                 setHeaders: {
@@ -33,7 +32,7 @@ export class AuthInterceptorService {
         }
 
         return next.handle(request).pipe(
-            catchError((error) => {
+            catchError(error => {
                 let errorMessage: any
                 if (error.status === 401) {
                     this.router.navigateByUrl('login')

@@ -1,0 +1,80 @@
+<div class="container container-plus">
+    <div class="row">
+        <div class="col-lg-6 col-xl-3 mb-4">
+            <div class="card bg-primary text-white h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="me-3">
+                            <div class="text-white-75 small">Reparaciones en proceso</div>
+                            <div class="text-lg fw-bold">{{ aceptadas }}</div>
+                        </div>
+                        <i class="fa-duotone fa-2x fa-arrows-rotate"></i>
+                    </div>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between small">
+                    <a class="text-white stretched-link" routerLink="/reparation/list/ACEPTADAS">Ver reparaciones</a>
+                    <div class="text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-3 mb-4">
+            <div class="card bg-warning text-white h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="me-3">
+                            <div class="text-white-75 small">Reparaciones terminadas</div>
+                            <div class="text-lg fw-bold">{{ prontas }}</div>
+                        </div>
+                        <i class="fa-duotone fa-2x fa-circle-check"></i>
+                    </div>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between small">
+                    <a class="text-white stretched-link" routerLink="/reparation/list/PRONTAS">Ver reparaciones</a>
+                    <div class="text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-3 mb-4">
+            <div class="card bg-success text-white h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="me-3">
+                            <div class="text-white-75 small">Equipos en taller</div>
+                            <div class="text-lg fw-bold">{{ enTaller }}</div>
+                        </div>
+                        <i class="fa-duotone fa-2x fa-shelves"></i>
+                    </div>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between small">
+                    <a class="text-white stretched-link" routerLink="/reparation/list/EN_TALLER">Ver reparaciones</a>
+                    <div class="text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-3 mb-4">
+            <div class="card bg-danger text-white h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="me-3">
+                            <div class="text-white-75 small">Mensajes recibidos</div>
+                            <div class="text-lg fw-bold">{{ contacts }}</div>
+                        </div>
+                        <i class="fa-duotone fa-2x fa-messages"></i>
+                    </div>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between small">
+                    <a class="text-white stretched-link" routerLink="/contact/list">Ver mensajes</a>
+                    <div class="text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div *ngIf="labelsPie" class="col-4">
+            <app-chart-pie [labels]="labelsPie" [values]="valuesPie"></app-chart-pie>
+        </div>
+        <div *ngIf="labelsBar" class="col-7 offset-1 pt-4">
+            <app-chart-bar [labels]="labelsBar" [values]="valuesBar"></app-chart-bar>
+        </div>
+    </div>
+</div>

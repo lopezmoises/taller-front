@@ -5,28 +5,28 @@
     <div class='card-body'>
         <form (ngSubmit)="onSubmit()" [formGroup]="form" novalidate>
             <div class='form-floating mb-3'>
-                <input class='form-control rounded-0' id='customer-name' type='text'>
+                <input formControlName='name' class='form-control rounded-0' id='customer-name' type='text'>
                 <label for='customer-name'>Nombre</label>
             </div>
             <div class='form-floating mb-3'>
-                <input class='form-control rounded-0' id='customer-document' type='text'>
+                <input formControlName='document' class='form-control rounded-0' id='customer-document' type='text'>
                 <label for='customer-document'>Documento</label>
             </div>
             <div class='form-floating mb-3'>
-                <input class='form-control rounded-0' id='customer-tel' type='text'>
-                <label for='customer-tel'>Teléfono</label>
+                <input formControlName='phone' class='form-control rounded-0' id='customer-phone' type='text'>
+                <label for='customer-phone'>Teléfono</label>
             </div>
             <div class='form-floating mb-3'>
-                <input class='form-control rounded-0' id='customer-email' type='email'>
+                <input formControlName='email' class='form-control rounded-0' id='customer-email' type='email'>
                 <label for='customer-email'>Email</label>
+            </div>
             <div class='form-floating mb-3'>
-                <input class='form-control rounded-0' id='customer-address' type='text'>
+                <input formControlName='address' class='form-control rounded-0' id='customer-address' type='text'>
                 <label for='customer-address'>Dirección</label>
             </div>
-            </div>
             <div class='d-grid gap-2'>
-                <button class='btn btn-primary rounded-0 fw-bold' type='button'>
-                    <i class='fa-duotone fa-floppy-disk me-2'></i>Crear
+                <button class='btn btn-primary rounded-0 fw-bold' type='submit'>
+                    <i class='fa-duotone fa-floppy-disk me-2'></i>Guardar
                 </button>
             </div>
         </form>

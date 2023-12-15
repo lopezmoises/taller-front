@@ -12,10 +12,7 @@ import { StorageService } from '../storage.service'
 export class LoginComponent {
     public form: FormGroup = new FormGroup({
         username: new FormControl(null, [Validators.required]),
-        password: new FormControl(null, [
-            Validators.required,
-            Validators.minLength(4),
-        ]),
+        password: new FormControl(null, [Validators.required, Validators.minLength(4)]),
     })
 
     constructor(
@@ -34,12 +31,12 @@ export class LoginComponent {
             }
 
             this.authService.authenticate(credentials).subscribe({
-                next: (res) => {
+                next: res => {
                     console.log(res)
                     this.storageService.setSession(res)
                     this.router.navigate([''])
                 },
-                error: (err) => console.log(err),
+                error: err => console.log(err),
             })
         }
     }
