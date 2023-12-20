@@ -1,25 +1,74 @@
 <div class="card rounded-0 mx-5">
     <div class="card-header fw-bold">Crear cliente</div>
     <div class="card-body">
-        <form>
-            <div class="form-floating mb-3">
-                <input class="form-control rounded-0" id="customer-name" type="text" />
-                <label for="customer-name">Nombre</label>
+        <form (ngSubmit)="onSubmit()" [formGroup]="form" novalidate>
+            <div [class.is-invalid]="!inputIsValid('name', form)" class="form-floating mb-3">
+                <input
+                    [class.is-invalid]="!inputIsValid('name', form)"
+                    class="form-control rounded-0"
+                    formControlName="name"
+                    id="customer-name"
+                    type="text"
+                />
+                <label *ngIf="inputIsValid('name', form); else invalidCustomerName" for="customer-name">Nombre</label>
+                <ng-template #invalidCustomerName>
+                    <label class="text-danger" for="customer-name">Nombre inválido</label>
+                </ng-template>
             </div>
-            <div class="form-floating mb-3">
-                <input class="form-control rounded-0" id="customer-document" type="text" />
-                <label for="customer-document">Documento</label>
+            <div [class.is-invalid]="!inputIsValid('document', form)" class="form-floating mb-3">
+                <input
+                    [class.is-invalid]="!inputIsValid('document', form)"
+                    class="form-control rounded-0"
+                    formControlName="document"
+                    id="customer-document"
+                    type="text"
+                />
+                <label *ngIf="inputIsValid('document', form); else invalidCustomerDocument" for="customer-document">Documento</label>
+                <ng-template #invalidCustomerDocument>
+                    <label class="text-danger" for="customer-document">Documento inválido</label>
+                </ng-template>
             </div>
-            <div class="form-floating mb-3">
-                <input class="form-control rounded-0" id="customer-tel" type="text" />
-                <label for="customer-tel">Teléfono</label>
+            <div [class.is-invalid]="!inputIsValid('phone', form)" class="form-floating mb-3">
+                <input
+                    [class.is-invalid]="!inputIsValid('phone', form)"
+                    class="form-control rounded-0"
+                    formControlName="phone"
+                    id="customer-phone"
+                    type="text"
+                />
+                <label *ngIf="inputIsValid('phone', form); else invalidCustomerPhone" for="customer-phone">Teléfono</label>
+                <ng-template #invalidCustomerPhone>
+                    <label class="text-danger" for="customer-phone">Teléfono inválido</label>
+                </ng-template>
             </div>
-            <div class="form-floating mb-3">
-                <input class="form-control rounded-0" id="customer-email" type="email" />
-                <label for="customer-email">Email</label>
+            <div [class.is-invalid]="!inputIsValid('email', form)" class="form-floating mb-3">
+                <input
+                    [class.is-invalid]="!inputIsValid('email', form)"
+                    class="form-control rounded-0"
+                    formControlName="email"
+                    id="customer-email"
+                    type="email"
+                />
+                <label *ngIf="inputIsValid('email', form); else invalidCustomerEmail" for="customer-email">Email</label>
+                <ng-template #invalidCustomerEmail>
+                    <label class="text-danger" for="customer-email">Documento inválido</label>
+                </ng-template>
+            </div>
+            <div [class.is-invalid]="!inputIsValid('address', form)" class="form-floating mb-3">
+                <input
+                    [class.is-invalid]="!inputIsValid('address', form)"
+                    class="form-control rounded-0"
+                    formControlName="address"
+                    id="customer-address"
+                    type="text"
+                />
+                <label *ngIf="inputIsValid('address', form); else invalidCustomerAddress" for="customer-address">Dirección</label>
+                <ng-template #invalidCustomerAddress>
+                    <label class="text-danger" for="customer-address">Dirección inválido</label>
+                </ng-template>
             </div>
             <div class="d-grid gap-2">
-                <button class="btn btn-primary rounded-0 fw-bold" type="button"><i class="fa-duotone fa-floppy-disk me-2"></i>Crear</button>
+                <button class="btn btn-primary rounded-0 fw-bold" type="submit"><i class="fa-duotone fa-floppy-disk me-2"></i>Guardar</button>
             </div>
         </form>
     </div>

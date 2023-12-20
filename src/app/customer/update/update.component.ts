@@ -4,6 +4,7 @@ import { CustomerService } from '../customer.service'
 import { ActivatedRoute } from '@angular/router'
 import { Customer } from '../customer.model'
 import { ToastService } from '../../shared/toast.service'
+import { CustomValidators } from '../../helpers/CustomValidators'
 
 @Component({
     selector: 'app-update',
@@ -22,16 +23,17 @@ export class UpdateComponent implements OnInit {
     ) {
         this.form = formBuilder.group(
             {
-                name: [{ value: null, disabled: true }],
-                document: [{ value: null, disabled: true }],
-                phone: ['', [Validators.required]],
-                email: ['', [Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+                name: ['', Validators.required],
+                document: ['', [Validators.required, CustomValidators.validateDocument]],
+                phone: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+                email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
                 address: ['', [Validators.required]],
             },
             {
                 updateOn: 'change',
             },
         )
+
     }
 
     public ngOnInit(): void {
@@ -69,6 +71,10 @@ export class UpdateComponent implements OnInit {
                 },
             })
         }
+    }
+
+    public inputIsValid(input: string, form: FormGroup): boolean {
+        return !(form.get(input)?.invalid && form.get(input)?.touched)
     }
 
     private customerBody(): Customer {
